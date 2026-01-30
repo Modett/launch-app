@@ -321,4 +321,4 @@ Private - Modett © 2025
 
 ## Support
 
-For issues or questions, contact your development team"
+For issues or questions, contact your development team.

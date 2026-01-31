@@ -7,7 +7,7 @@ interface WaitlistBody {
 
 export default async function routes(fastify: FastifyInstance) {
   fastify.post<{ Body: WaitlistBody }>(
-    "/api/waitlist",
+    "/waitlist",
     async (request, reply) => {
       const { email } = request.body;
 

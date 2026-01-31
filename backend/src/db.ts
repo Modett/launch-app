@@ -1,5 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { createClient } from '@supabase/supabase-js';
 
-const prisma = new PrismaClient();
+const supabaseUrl = process.env.SUPABASE_URL!;
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY!;
 
-export default prisma;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export default supabase;

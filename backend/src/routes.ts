@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify";
-import prisma from "./db";
-import { Prisma } from "@prisma/client";
+import supabase from "./db";
 
 interface WaitlistBody {
   email: string;
@@ -22,24 +21,29 @@ export default async function routes(fastify: FastifyInstance) {
         const now = new Date();
         const localTime = new Date(now.getTime() + (5.5 * 60 * 60 * 1000)); // Add 5:30 hours
 
-        await prisma.waitlist.create({
-          data: {
-            email,
-            createdAt: localTime,
-          },
-        });
-        reply.send({ success: true, message: "Joined waitlist successfully" });
-      } catch (err: any) {
-        if (
-          err instanceof Prisma.PrismaClientKnownRequestError &&
-          err.code === "P2002"
-        ) {
-          // Unique constraint violation
-          reply.code(409).send({ error: "Email already in waitlist" });
+        const { data, error } = await supabase
+          .from('Waitlist')
+          .insert([
+            {
+              email,
+              createdAt: localTime.toISOString(),
+            }
+          ]);
+
+        if (error) {
+          // Check for unique constraint violation
+          if (error.code === '23505') {
+            reply.code(409).send({ error: "Email already in waitlist" });
+          } else {
+            fastify.log.error(error);
+            reply.code(500).send({ error: "Internal server error" });
+          }
         } else {
-          fastify.log.error(err);
-          reply.code(500).send({ error: "Internal server error" });
+          reply.send({ success: true, message: "Joined waitlist successfully" });
         }
+      } catch (err: any) {
+        fastify.log.error(err);
+        reply.code(500).send({ error: "Internal server error" });
       }
     },
   );

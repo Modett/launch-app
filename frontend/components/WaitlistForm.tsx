@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+const API_URL = process.env.WAITLIST_API_URL || "http://localhost:3001";
+
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<
@@ -15,7 +17,7 @@ export default function WaitlistForm() {
     setMessage("");
 
     try {
-      const res = await fetch("http://localhost:3001/api/waitlist", {
+      const res = await fetch(`${API_URL}/api/waitlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

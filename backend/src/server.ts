@@ -10,10 +10,9 @@ const server = Fastify({
 });
 
 server.register(cors, {
-  origin: true, // Allow all origins for now (dev), restrict in prod
+  origin: true,
 });
 
 server.register(routes);
 
-// Export for Vercel (Vercel handles the listening automatically)
 export default server;

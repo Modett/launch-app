@@ -6,16 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const server = Fastify({
-  logger: {
-    transport: {
-      target: 'pino-pretty',
-      options: {
-        colorize: true,
-        translateTime: 'HH:MM:ss',
-        ignore: 'pid,hostname',
-      },
-    },
-  },
+  logger: true,
 });
 
 server.register(cors, {

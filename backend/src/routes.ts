@@ -27,8 +27,10 @@ export default async function routes(fastify: FastifyInstance) {
             {
               email,
               createdAt: localTime.toISOString(),
+              source: 'landing_page',
             }
-          ]);
+          ])
+          .select();
 
         if (error) {
           // Check for unique constraint violation

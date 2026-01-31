@@ -33,11 +33,17 @@ export default function WaitlistForm() {
         setEmail("");
       } else {
         setStatus("error");
-        setMessage(data.error || "Something went wrong. Please try again.");
+        setMessage(data.error || `Error ${res.status}: Something went wrong. Please try again.`);
+        console.error("API Error:", { status: res.status, error: data });
       }
     } catch (error) {
       setStatus("error");
-      setMessage("Failed to connect to the server.");
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Failed to connect to the server."
+      );
+      console.error("Waitlist submission error:", error);
     }
   };
 

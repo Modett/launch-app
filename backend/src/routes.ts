@@ -6,10 +6,12 @@ interface WaitlistBody {
 }
 
 export default async function routes(fastify: FastifyInstance) {
-  fastify.post<{ Body: WaitlistBody }>(
-    "/waitlist",
-    async (request, reply) => {
-      const { email } = request.body;
+  fastify.get("/", async () => {
+    return { ok: true, service: "modett-backend" };
+  });
+
+  fastify.post<{ Body: WaitlistBody }>("/waitlist", async (request, reply) => {
+          const { email } = request.body;
 
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         reply.code(400).send({ error: "Invalid email address" });
@@ -17,7 +19,6 @@ export default async function routes(fastify: FastifyInstance) {
       }
 
       try {
-        // Get current time in Asia/Colombo timezone (UTC+5:30)
         const now = new Date();
         const localTime = new Date(now.getTime() + (5.5 * 60 * 60 * 1000)); // Add 5:30 hours
 
@@ -47,6 +48,5 @@ export default async function routes(fastify: FastifyInstance) {
         fastify.log.error(err);
         reply.code(500).send({ error: "Internal server error" });
       }
-    },
-  );
+  });
 }

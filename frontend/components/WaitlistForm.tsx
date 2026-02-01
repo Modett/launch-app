@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-const API_URL = process.env.WAITLIST_API_URL || "http://localhost:3001";
+const API_URL =
+  process.env.WAITLIST_API_URL || "https://launch-app-536c.vercel.app";
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
@@ -33,7 +34,10 @@ export default function WaitlistForm() {
         setEmail("");
       } else {
         setStatus("error");
-        setMessage(data.error || `Error ${res.status}: Something went wrong. Please try again.`);
+        setMessage(
+          data.error ||
+            `Error ${res.status}: Something went wrong. Please try again.`,
+        );
         console.error("API Error:", { status: res.status, error: data });
       }
     } catch (error) {
@@ -41,7 +45,7 @@ export default function WaitlistForm() {
       setMessage(
         error instanceof Error
           ? error.message
-          : "Failed to connect to the server."
+          : "Failed to connect to the server.",
       );
       console.error("Waitlist submission error:", error);
     }

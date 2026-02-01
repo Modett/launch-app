@@ -25,7 +25,7 @@ export default async function routes(fastify: FastifyInstance) {
         const localTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000); // Add 5:30 hours
 
         const { data, error } = await supabase
-          .from("Waitlist")
+          .from("waitlist")
           .insert([
             {
               email,

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Modett",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/public/logo.png",
         width: 1200,
         height: 630,
         alt: "Modett – Elegance, Amplified",

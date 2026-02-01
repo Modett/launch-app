@@ -29,7 +29,7 @@ export default async function routes(fastify: FastifyInstance) {
           .insert([
             {
               email,
-              createdAt: localTime.toISOString(),
+              created_at: localTime.toISOString(),
               source: "landing_page",
             },
           ])

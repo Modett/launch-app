@@ -79,7 +79,7 @@ export default function Home() {
           {/* Social Icons */}
           <div className="flex items-center" style={{ gap: "21.83px" }}>
             <a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61576302094475&sk=about"
               aria-label="Facebook"
               className="transition-colors"
               style={{ color: "#765C4D" }}
@@ -94,7 +94,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/_modett/"
               aria-label="Instagram"
               className="transition-colors"
               style={{ color: "#765C4D" }}

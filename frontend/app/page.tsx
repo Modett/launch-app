@@ -109,7 +109,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/modett/"
               aria-label="LinkedIn"
               className="transition-colors"
               style={{ color: "#765C4D" }}

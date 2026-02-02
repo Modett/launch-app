@@ -124,7 +124,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="#"
+              href="https://www.tiktok.com/@_modett"
               aria-label="TikTok"
               className="transition-colors"
               style={{ color: "#765C4D" }}
